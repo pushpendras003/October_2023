@@ -1,0 +1,19 @@
+class Solution {
+    public boolean winnerOfGame(String colors) {
+        int ca=0,cb=0;
+        int n=colors.length();
+        for(int i=1;i<n;i++){
+          if(i+1<n && i-1>=0){
+            if(colors.charAt(i)=='A' && colors.charAt(i+1)=='A' && colors.charAt(i-1)=='A'){
+              ca++;
+            }
+            else if(colors.charAt(i)=='B' && colors.charAt(i+1)=='B' && colors.charAt(i-1)=='B'){
+              cb++;
+            }
+          }
+        }
+        if(ca>cb) return true;
+        return false;
+    }
+}
+
