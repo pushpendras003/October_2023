@@ -1,0 +1,20 @@
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        Map<Integer,ArrayList<Integer>> map=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+          if(!map.containsKey(nums[i])){
+            map.put(nums[i],new ArrayList<>());
+          }
+          map.get(nums[i]).add(i);
+        }
+        int ans=0;
+        for(ArrayList<Integer> arr:map.values()){
+          int n=arr.size();
+          int t=((n)*(n-1))/2;
+          ans+=t;
+
+        }
+        return ans;
+
+    }
+}
