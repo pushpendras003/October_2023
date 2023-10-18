@@ -1,0 +1,23 @@
+class Solution:
+    def minimumTime(self, n: int, relations: List[List[int]], time: List[int]) -> int:
+
+      d=defaultdict(list)
+      indegree=[0]*n
+      for i,j in relations:
+        d[i-1].append(j-1)
+        indegree[j-1]+=1
+      
+      q=deque()
+      max_time=[0]*n
+      for i in range(n):
+        if indegree[i]==0:
+          q.append(i)
+          max_time[i]=time[i]
+      while q:
+        node=q.popleft()
+        for neigh in d[node]:
+          max_time[neigh]=max(max_time[neigh],max_time[node]+time[neigh])
+          indegree[neigh]-=1
+          if indegree[neigh]==0:
+            q.append(neigh)
+      return max(max_time)
